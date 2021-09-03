@@ -1,14 +1,20 @@
-import '@fontsource/inter/variable.css';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react";
+import { AppProps } from "next/app";
+import { AnimatePresence } from "framer-motion";
 
-import theme from '../theme';
-import { AppProps } from 'next/app';
+import { NavBar } from "../components";
+import theme from "../theme";
+
+import "@fontsource/inter/variable.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <AnimatePresence exitBeforeEnter>
+      <ChakraProvider resetCSS theme={theme}>
+        <NavBar />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </AnimatePresence>
   );
 }
 

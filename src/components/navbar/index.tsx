@@ -20,7 +20,7 @@ export const NavBar = () => {
       <Flex w="300px" alignItems="center" justifyContent="space-between">
         <Link href="/">Home</Link>
         <Link href="/projects">Projects</Link>
-        <Link href="/skills">Skills</Link>
+        {/* <Link href="/skills">Skills</Link> */}
         <DarkModeSwitch />
       </Flex>
     </Flex>

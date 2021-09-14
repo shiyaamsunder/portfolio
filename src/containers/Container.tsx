@@ -6,7 +6,7 @@ export const Container = (props: FlexProps) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duratison: 0.8 }}
     >
       <Flex
         direction="column"

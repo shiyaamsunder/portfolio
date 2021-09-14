@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import {
   Github,
   Instagram,
@@ -15,10 +15,20 @@ export const Hero = ({ title }: { title: string }) => (
     flexDir="column"
   >
     <Stack textAlign="center" spacing={5}>
-      <Heading fontSize={["58px", "64px"]} fontWeight="700">
+      <Heading fontSize={["4xl", "5xl"]} fontWeight="700">
         {title}
       </Heading>
-      <Heading>I'm Shiyaam Sunder.</Heading>
+      <Text fontSize="4xl" fontWeight="700">
+        My Name is
+      </Text>
+      <Text
+        bgGradient="linear(to-l, #9246df,#f32d90)"
+        bgClip="text"
+        fontSize="6xl"
+        fontWeight="extrabold"
+      >
+        Shiyaam Sunder
+      </Text>
       <Heading fontSize="28px">I design and build websites.</Heading>
 
       <Flex alignItems="center" justifyContent="space-around" pt="2rem">

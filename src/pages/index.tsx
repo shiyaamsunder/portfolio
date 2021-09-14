@@ -1,16 +1,12 @@
-import { Hero } from '../components/Hero';
-import { Container } from '../components/Container';
-import { DarkModeSwitch } from '../components/DarkModeSwitch';
-import Head from 'next/head';
+import { Hero, Container } from "../containers";
+import Head from "next/head";
 
 const Index = () => (
-  <Container height="100vh">
+  <Container height="90vh">
     <Head>
       <title>Shiyaam Sunder</title>
     </Head>
     <Hero />
-
-    <DarkModeSwitch />
   </Container>
 );
 

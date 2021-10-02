@@ -1,20 +1,25 @@
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import useSwr from "swr";
 import { Flex, Heading, Text, VStack, Spinner } from "@chakra-ui/react";
 
-import { Card, Link } from "../components";
+import { Card } from "../components";
 export { Container } from "../containers/Container";
 import { Container } from "../containers";
 
-import type { Project } from "../types";
+import { supabase } from "../utils";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetchProjects = async () => {
+  try {
+    let { data: projects, error } = await supabase.from("projects").select("*");
+    if (error) throw new Error(error.message);
+    return { projects, error };
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-export default function ProjectsPage() {
-  const { data, error } = useSwr("/api/projects", fetcher);
-
-  if (!data)
+export default function ProjectsPage({ projects }) {
+  if (!projects)
     return (
       <Container h="90vh" justifyContent="center">
         {<Spinner size="xl" />}
@@ -41,7 +46,7 @@ export default function ProjectsPage() {
         </VStack>
 
         <Flex direction="column" alignItems="center">
-          {data.map((project) => (
+          {projects.map((project) => (
             <Card key={project.title} {...project} />
           ))}
         </Flex>
@@ -50,13 +55,12 @@ export default function ProjectsPage() {
   );
 }
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const res = await fetch(`/api/product`);
-//   const projects: Project[] = await res.json();
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { projects } = await fetchProjects();
 
-//   return {
-//     props: {
-//       projects,
-//     },
-//   };
-// };
+  return {
+    props: {
+      projects,
+    },
+  };
+};
